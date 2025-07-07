@@ -1,0 +1,69 @@
+{
+  "defaultAudioLanguage": "en",
+  "defaultTextLanguage": "es",
+  "playlist": [
+    {
+      "title": "Main Content Playlist",
+      "playlistId": "pl-001",
+      "items": [
+        {
+          "videoURL": "https://storage.googleapis.com/shaka-demo-assets/angel-one/dash.mpd",
+          "title": "Angel One (DASH)",
+          "description": "A short film by the Blender Foundation.",
+          "posterURL": "https://storage.googleapis.com/shaka-demo-assets/angel-one-poster.jpg",
+          "thumbnail": "https://storage.googleapis.com/shaka-demo-assets/angel-one/thumbnails.vtt",
+          "duration": 296,
+          "skipList": [
+            {
+              "title": "Skip Intro",
+              "startTime": 0,
+              "endTime": 15.5
+            }
+          ],
+          "isLive": false
+        },
+        {
+          "videoURL": "http://localhost:9000/outputs/multi-tracks/master.m3u8",
+          "title": "Big Buck Bunny (HLS)",
+          "posterURL": "https://peach.blender.org/wp-content/uploads/title_anouncement.jpg?x11217",
+          "description": "A classic open-source animation."
+        }
+      ]
+    }
+  ],
+  "adsConfig": {
+    "adTags": [
+      {
+        "adTagUrl": "https://pubads.g.doubleclick.net/gampad/ads?sz=640x480&iu=/124319096/external/ad_rule_samples&ciu_szs=300x250&ad_rule=1&impl=s&gdfp_req=1&env=vp&output=vmap&unviewed_position_start=1&cust_params=deployment%3Ddevsite%26sample_ar%3Dpremidpostpod&cmsid=496&vid=short_onecue&correlator=",
+        "type": "preroll"
+      }
+    ]
+  },
+  "drmConfig": {
+    "servers": {
+      "com.widevine.alpha": "https://cwip-shaka-proxy.appspot.com/no_auth",
+      "com.microsoft.playready": "https://cwip-shaka-proxy.appspot.com/no_auth"
+    }
+  },
+  "uiConfig": {
+    "primaryColor": "#3B82F6",
+    "fontFamily": "\"Roboto\", sans-serif",
+    "captions": {
+      "textColor": "#FFFFFF",
+      "backgroundColor": "rgba(0, 0, 0, 0.7)",
+      "fontSize": "1.5rem",
+      "fontWeight": 700,
+      "fontStyle": "normal",
+      "edgeType": "drop-shadow"
+    }
+  },
+  "shakaConfig": {
+    "abr": {
+      "defaultBandwidthEstimate": 5000000
+    },
+    "streaming": {
+      "rebufferingGoal": 5,
+      "bufferingGoal": 20
+    }
+  }
+}
