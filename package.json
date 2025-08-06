@@ -1,14 +1,36 @@
 {
-    "name": "snap-encode-player",
+    "name": "react-snapencode-player",
     "version": "1.0.0",
-    "description": "A standalone React video player component.",
-    "main": "dist/bundle.js",
+    "description": "Universal React Video Player Library",
+    "main": "dist/react-snapencode-player.js",
+    "module": "dist/react-snapencode-player.esm.js",
+    "unpkg": "dist/react-snapencode-player.min.js",
+    "jsdelivr": "dist/react-snapencode-player.min.js",
+    "types": "dist/index.d.ts",
+    "files": [
+        "dist",
+        "README.md"
+    ],
     "scripts": {
-        "start": "webpack-dev-server --open",
-        "build": "webpack --mode production"
+        "build": "npm run clean && npm run build:umd && npm run build:esm && npm run build:types",
+        "build:umd": "webpack --mode=production",
+        "build:dev": "webpack --mode=development",
+        "build:esm": "tsc --project tsconfig.esm.json",
+        "build:types": "tsc --project tsconfig.types.json",
+        "build:watch": "webpack --mode=development --watch",
+        "clean": "rimraf dist",
+        "serve": "webpack serve --mode=development --open",
+        "analyze": "webpack-bundle-analyzer dist/react-snapencode-player.min.js",
+        "test:build": "node test-build.js"
+    },
+    "peerDependencies": {
+        "react": "^18.0.0 || ^19.0.0",
+        "react-dom": "^18.0.0 || ^19.0.0"
     },
     "devDependencies": {
         "@babel/core": "^7.27.4",
+        "@babel/plugin-proposal-class-properties": "^7.18.6",
+        "@babel/plugin-transform-runtime": "^7.28.0",
         "@babel/preset-env": "^7.27.2",
         "@babel/preset-react": "^7.27.1",
         "@babel/preset-typescript": "^7.27.1",
@@ -19,11 +41,14 @@
         "babel-loader": "^10.0.0",
         "copy-webpack-plugin": "^13.0.0",
         "css-loader": "^7.1.2",
+        "css-minimizer-webpack-plugin": "^7.0.2",
         "html-webpack-plugin": "^5.6.3",
+        "mini-css-extract-plugin": "^2.9.2",
         "postcss": "^8.5.6",
         "postcss-loader": "^8.1.1",
         "style-loader": "^4.0.0",
         "tailwindcss": "^4.1.10",
+        "terser-webpack-plugin": "^5.3.14",
         "ts-loader": "^9.5.2",
         "typescript": "^5.8.3",
         "webpack": "^5.99.9",
@@ -33,8 +58,9 @@
     "dependencies": {
         "clsx": "^2.1.1",
         "rc-slider": "^11.1.8",
-        "react": "^19.1.0",
-        "react-dom": "^19.1.0",
+        "react": "^18.0.0 || ^19.0.0",
+        "react-dom": "^18.0.0 || ^19.0.0",
+        "rimraf": "^6.0.1",
         "shaka-player": "^4.15.3",
         "tailwind-merge": "^3.3.1",
         "use-debounce": "^10.0.5",

@@ -1,69 +1,125 @@
+// webpack.esm.config.js - ES Modules build
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 
-module.exports = {
-    // ... (mode, entry, output, module, resolve sections are all fine) ...
-    mode: 'development',
-    entry: './src/index.tsx',
-    output: {
-        path: path.resolve(__dirname, 'dist'),
-        filename: 'bundle.js',
-        clean: true,
-    },
+module.exports = (env, argv) => {
+    const isProduction = argv.mode === 'production';
 
-    // ==========================================================
-    // START: Apply the fix here
-    // ==========================================================
-    devServer: {
-        static: {
-            directory: path.join(__dirname, 'dist'),
-            // FIX: Explicitly disable the directory listing feature
-            // that causes the conflict.
-            serveIndex: false,
+    return {
+        mode: isProduction ? 'production' : 'development',
+
+        entry: './src/index.ts',
+
+        experiments: {
+            outputModule: true, // Enable ES module output
         },
-        // BEST PRACTICE: Add this for Single Page Applications.
-        // It redirects all 404s to /index.html, allowing React Router to work.
-        historyApiFallback: true,
-        compress: true,
-        port: 9000,
-    },
-    // ==========================================================
-    // END: Fix applied
-    // ==========================================================
 
-    module: {
-        rules: [
-            {
-                test: /\.(ts|tsx|js|jsx)$/,
-                exclude: /node_modules/,
-                use: {
-                    loader: 'babel-loader',
-                },
+        output: {
+            path: path.resolve(__dirname, 'dist'),
+            filename: isProduction
+                ? 'react-snapencode-player.esm.min.js'
+                : 'react-snapencode-player.esm.js',
+            clean: false, // Don't clean, we might have other builds
+
+            // ES Module configuration
+            library: {
+                type: 'module', // Output as ES module
             },
-            {
-                test: /\.css$/,
-                use: ['style-loader', 'css-loader', 'postcss-loader'],
+            environment: {
+                module: true, // Support ES modules
+                dynamicImport: true,
             },
-        ],
-    },
-    resolve: {
-        extensions: ['.tsx', '.ts', '.js', '.jsx'],
-        alias: {
-            '@': path.resolve(__dirname, 'src/'),
-        }
-    },
-    plugins: [
-        new CopyWebpackPlugin({
-            patterns: [
+        },
+
+        devtool: isProduction ? 'source-map' : 'eval-source-map',
+
+        module: {
+            rules: [
                 {
-                    from: 'public',
-                    to: '.',
+                    test: /\.(ts|tsx|js|jsx)$/,
+                    exclude: /node_modules/,
+                    use: {
+                        loader: 'babel-loader',
+                        options: {
+                            presets: [
+                                ['@babel/preset-env', {
+                                    targets: "> 0.25%, not dead",
+                                    modules: false // Keep ES modules
+                                }],
+                                ['@babel/preset-react', {
+                                    runtime: 'automatic'
+                                }],
+                                '@babel/preset-typescript'
+                            ],
+                            plugins: [
+                                '@babel/plugin-proposal-class-properties'
+                            ]
+                        }
+                    },
                 },
+
+                {
+                    test: /\.css$/,
+                    use: [
+                        MiniCssExtractPlugin.loader,
+                        'css-loader',
+                        'postcss-loader'
+                    ],
+                },
+
+                {
+                    test: /\.(png|jpe?g|gif|svg|ico)$/,
+                    type: 'asset/resource',
+                    generator: {
+                        filename: 'assets/[name][ext]'
+                    }
+                }
             ],
-        }),
-        new HtmlWebpackPlugin({
-            template: './src/index.html',
-        }),
-    ],
+        },
+
+        resolve: {
+            extensions: ['.tsx', '.ts', '.jsx', '.js'],
+            alias: {
+                '@': path.resolve(__dirname, 'src'),
+            }
+        },
+
+        plugins: [
+            new MiniCssExtractPlugin({
+                filename: isProduction
+                    ? 'react-snapencode-player.esm.min.css'
+                    : 'react-snapencode-player.esm.css'
+            })
+        ],
+
+        optimization: {
+            minimize: isProduction,
+            minimizer: [
+                new TerserPlugin({
+                    terserOptions: {
+                        compress: {
+                            drop_console: isProduction
+                        },
+                        format: {
+                            comments: false
+                        }
+                    }
+                }),
+                new CssMinimizerPlugin()
+            ],
+            splitChunks: false,
+        },
+
+        // External dependencies
+        externals: {
+            react: 'react',
+            'react-dom': 'react-dom'
+        },
+
+        performance: {
+            hints: false
+        }
+    };
 };
