@@ -44,7 +44,7 @@ export const SettingsButton: React.FC<SettingsButtonProps> = ({
             aria-label={ariaLabel}
             aria-expanded={isOpen}
             aria-haspopup="dialog"
-            className={`backdrop-blur-sm bg-zinc-900/80 hover:bg-zinc-800/90 border border-zinc-700/50 transition-all duration-200 ${className || ''}`}
+            className={`backdrop-blur-sm transition-all duration-200 ${className || ''}`}
         >
             <Icons.SettingsIcon
                 className="h-6 w-6 fill-current text-white drop-shadow-md transition-transform duration-200 hover:rotate-90"

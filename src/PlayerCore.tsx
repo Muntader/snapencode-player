@@ -66,20 +66,6 @@ export const PlayerCore: React.FC = () => {
 
     usePlayerEngine();
 
-    const getLogoPositionClass = (): string => {
-        switch (uiConfig?.layout?.logoPosition) {
-            case 'top-left':
-                return 'top-4 left-4';
-            case 'bottom-left':
-                return 'bottom-[60px] md:bottom-[70px] left-4';
-            case 'bottom-right':
-                return 'bottom-[60px] md:bottom-[70px] right-4';
-            case 'top-right':
-            default:
-                return 'top-4 right-4';
-        }
-    };
-
     const playerStyles = useMemo((): PlayerStyles => {
         const styles: PlayerStyles = {};
         if (!uiConfig) return styles;
@@ -118,12 +104,6 @@ export const PlayerCore: React.FC = () => {
                 playsInline
                 autoPlay
             />
-
-            {uiConfig?.layout?.logoUrl && (
-                <div className={`absolute z-10 w-24 h-auto pointer-events-none ${getLogoPositionClass()}`}>
-                    <img src={uiConfig.layout.logoUrl} alt="Player Logo" className="w-full h-auto" />
-                </div>
-            )}
 
             <div
                 ref={adContainerRef}

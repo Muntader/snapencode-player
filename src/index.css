@@ -5,7 +5,8 @@
  *    It sets the global font for the UI, which is inherited by all controls.
  */
 .bitbyte3-player-container {
-    font-family: var(--theme-font, sans-serif); /* Use theme font with a safe fallback */
+    font-family: var(--theme-font, sans-serif);
+    overflow: hidden;
 }
 
 

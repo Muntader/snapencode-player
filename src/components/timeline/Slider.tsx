@@ -400,7 +400,7 @@ export const Slider: React.FC<CustomSliderProps> = React.memo(({
         const hasThumbnail = !!(hoverState.vttCue && spriteDimensionsMap[hoverState.vttCue.spriteUrl]);
         const label = hoverState.activeChapter?.label || hoverState.activeHighlight?.label;
         return (
-            <div className="flex flex-col items-center rounded-xl bg-white/90 text-slate-700 shadow-xl shadow-black/15 backdrop-blur-md overflow-hidden">
+            <div className="flex flex-col items-center rounded-xl ackdrop-blur-md text-white bg-zinc-900/95 border border-zinc-700/50 shadow-2xl shadow-black/15 backdrop-blur-md overflow-hidden">
                 {hasThumbnail && (
                     <div style={{
                         backgroundImage: `url(${hoverState.vttCue!.spriteUrl})`,
