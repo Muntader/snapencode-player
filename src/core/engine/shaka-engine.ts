@@ -360,3 +360,5 @@ async function loadMainContent(player: shaka.Player, config: Configuration, vide
     updateState({ isContentLoaded: true });
     videoElement.play().catch(e => console.warn("Autoplay was prevented.", e));
 }
+
+
