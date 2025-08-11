@@ -23,7 +23,7 @@ const Header: React.FC = React.memo(() => {
             )}
             <div className="title">
                 {/* --> Title Styling: A much stronger shadow is required without a background */}
-                <h3 className="w-full break-words select-none text-white text-xl font-bold [text-shadow:0_2px_4px_rgb(0_0_0_/_60%)]">
+                <h3 className="w-full break-words select-none text-white text-xl font-bold [text-shadow:0_2px_4px_rgb(0_0_0_/_60%)] x">
                     {currentVideo?.title}
                 </h3>
                 {/* --> Description Styling: Also needs a shadow */}
