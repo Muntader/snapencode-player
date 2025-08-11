@@ -1,6 +1,6 @@
 import { useEffect, useCallback, useRef } from 'react';
 // @ts-ignore - Using the compiled core engine is correct for a custom UI.
-import shaka from 'shaka-player/dist/shaka-player.compiled';
+import shaka from 'shaka-player';
 import { useShallow } from 'zustand/react/shallow';
 import { useBitbyte3Player } from '@/core/PlayerProvider';
 import { usePlayerConfigStore, useCurrentVideo } from '@/store/usePlayerConfigStore';

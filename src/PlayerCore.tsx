@@ -8,6 +8,7 @@ import ControlsOverlay from './components/layouts/ControlsOverlay';
 import ErrorDisplay from './components/layouts/ErrorDisplay';
 import { CaptionTheme } from './types';
 import {ModalContainer} from "@/components/common/Modal";
+import "./index.css"
 
 // ============================================================================
 // Style Helper Functions

@@ -1,17 +1,17 @@
 import React from "react";
-import {Button} from "@/components/common/Button";
+import { useTranslation } from "react-i18next";
+import { Button } from "@/components/common/Button";
 import { Icons } from "../common/Icon";
-import {useFullscreenState} from "@/hooks/useFullscreen";
+import { useFullscreenState } from "@/hooks/useFullscreen";
+
 const FullscreenButton: React.FC = React.memo(() => {
-    // The new hook provides both the state and the action.
+    const { t } = useTranslation();
     const { isFullscreenActive, toggleFullscreen } = useFullscreenState();
 
-    // Note: The ability to fullscreen is implicitly handled by the browser.
-    // The button will simply not work if the feature is disabled (e.g., in an iframe without allowfullscreen).
-    // You could add a check `if (!document.fullscreenEnabled)` but it's often not necessary.
+    const label = isFullscreenActive ? t('exitFullscreen') : t('fullscreen');
 
     return (
-        <Button onClick={toggleFullscreen} aria-label={"Fullscreen"}>
+        <Button onClick={toggleFullscreen} aria-label={label} title={label}>
             {isFullscreenActive ? <Icons.ExitFullscreenIcon className="w-6 h-6 fill-current text-primary" /> : <Icons.EnterFullscreenIcon className="w-6 h-6 fill-current text-primary" />}
         </Button>
     );

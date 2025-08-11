@@ -4,6 +4,7 @@ import PlayPauseButton from "./PlayPauseButton";
 import VolumeButton from "./VolumeButton";
 import FullscreenButton from "./FullscreenButton";
 import ChromecastButton from "./ChromecastButton";
+import PipButton from "./PipButton";
 import {usePlayerStateStore} from "@/store/usePlayerStateStore";
 import {useHasNext, useHasPlaylist, usePlayerConfigStore} from "@/store/usePlayerConfigStore";
 import ProgressBar from "@/components/timeline/ProgressBar";
@@ -78,6 +79,7 @@ export const ControlBottom = () => {
                     {!isAdPlaying && (
                          <SettingsButton />
                     )}
+                    <PipButton />
                     {enabledComponents?.fullscreen && <FullscreenButton />}
                 </div>
             </div>

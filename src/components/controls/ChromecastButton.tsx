@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 // @ts-ignore
-import shaka from 'shaka-player/dist/shaka-player.compiled';
+import shaka from 'shaka-player';
 // ⭐ STEP 1: Import the new unified Configuration and VideoItem types
 import { Configuration, VideoItem } from "@/types";
 import { useBitbyte3Player } from "@/core/PlayerProvider";

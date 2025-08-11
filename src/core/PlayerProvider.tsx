@@ -2,7 +2,7 @@
 
 import React, { createContext, useContext, useMemo, useEffect, useState, useRef } from "react";
 // @ts-ignore
-import shaka from 'shaka-player/dist/shaka-player.compiled';
+import shaka from 'shaka-player';
 
 // --- CONTEXT DEFINITION ---
 // The context only holds stable or rarely changing values.

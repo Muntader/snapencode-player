@@ -1,0 +1,18 @@
+{
+  "play": "Reproducir",
+  "pause": "Pausar",
+  "fullscreen": "Pantalla completa",
+  "exitFullscreen": "Salir de pantalla completa",
+  "mute": "Silenciar",
+  "unmute": "Reactivar sonido",
+  "language": "Idioma",
+  "quality": "Calidad",
+  "audioAndSubtitles": "Audio y Subtítulos",
+  "auto": "Automático",
+  "audio": "Audio",
+  "subtitles": "Subtítulos",
+  "off": "Desactivado",
+  "speed": "Velocidad",
+  "normal": "Normal",
+  "pip": "Picture-in-Picture"
+}

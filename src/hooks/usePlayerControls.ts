@@ -222,6 +222,25 @@ export const usePlayerControls = () => {
 
     }, [player]);
 
+    const togglePip = useCallback(() => {
+        const videoElement = playbackRef.current;
+        if (videoElement) {
+            if (document.pictureInPictureElement) {
+                document.exitPictureInPicture();
+            } else {
+                videoElement.requestPictureInPicture();
+            }
+        }
+    }, [playbackRef]);
+
+    const setPlaybackRate = useCallback((rate: number) => {
+        const videoElement = playbackRef.current;
+        if (videoElement) {
+            videoElement.playbackRate = rate;
+            usePlayerStateStore.getState().actions.updateState({ playbackRate: rate });
+        }
+    }, [playbackRef]);
+
     // The high-level language selection can still be useful internally or as a fallback.
     const selectAudioLanguage = useCallback((language: string) => {
         if (!player) return;
@@ -242,6 +261,8 @@ export const usePlayerControls = () => {
         toggleMute,
         toggleFullscreen,
         skip,
+        setPlaybackRate,
+        togglePip,
         // Subtitle controls
         selectTextTrack,
         disableTextTrack,

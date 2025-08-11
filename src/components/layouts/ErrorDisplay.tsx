@@ -1,6 +1,6 @@
 import React from 'react';
 // @ts-ignore
-import shaka from 'shaka-player/dist/shaka-player.compiled';
+import shaka from 'shaka-player';
 import {formatShakaError} from "@/utils/shakaError"; // Adjust import path
 
 // A simple warning icon SVG

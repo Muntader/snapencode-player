@@ -12,14 +12,13 @@
         "README.md"
     ],
     "scripts": {
+        "// BUILD SCRIPTS (for creating the distributable library)": "",
         "build": "npm run clean && npm run build:umd && npm run build:esm && npm run build:types",
-        "build:umd": "webpack --mode=production",
-        "build:dev": "webpack --mode=development",
-        "build:esm": "tsc --project tsconfig.esm.json",
+        "build:esm": "webpack --config webpack.esm.config.js --mode=production",
         "build:types": "tsc --project tsconfig.types.json",
-        "build:watch": "webpack --mode=development --watch",
+        "// DEVELOPMENT & TESTING SCRIPTS": "",
+        "start": "webpack serve --config webpack.dev.config.js",
         "clean": "rimraf dist",
-        "serve": "webpack serve --mode=development --open",
         "analyze": "webpack-bundle-analyzer dist/react-snapencode-player.min.js",
         "test:build": "node test-build.js"
     },
@@ -57,9 +56,10 @@
     },
     "dependencies": {
         "clsx": "^2.1.1",
-        "rc-slider": "^11.1.8",
+        "i18next": "^25.3.4",
         "react": "^18.0.0 || ^19.0.0",
         "react-dom": "^18.0.0 || ^19.0.0",
+        "react-i18next": "^15.6.1",
         "rimraf": "^6.0.1",
         "shaka-player": "^4.15.3",
         "tailwind-merge": "^3.3.1",

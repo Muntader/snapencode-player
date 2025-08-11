@@ -1,6 +1,6 @@
 import { create } from "zustand";
 // @ts-ignore
-import shaka from 'shaka-player/dist/shaka-player.compiled';
+import shaka from 'shaka-player';
 import {CastState, SkipInterval} from "@/types"; // Adjust import path if needed
 
 // Helper types for tracks
@@ -41,6 +41,7 @@ interface PlayerState {
     isAdPlaying: boolean;
     adCuePoints: number[]; // <-- ADD THIS
     activeSkipInterval: SkipInterval | null;
+    playbackRate: number;
 
     // --- NEW AND UPDATED STATE ---
 
@@ -99,6 +100,7 @@ export const usePlayerStateStore = create<PlayerState & PlayerStateActions>((set
     isAdPlaying: false,
     adCuePoints: [],
     activeSkipInterval: null,
+    playbackRate: 1,
     // --- INITIAL STATE FOR NEW FIELDS ---
     isFullscreenActive: false,
     audioTracks: [],

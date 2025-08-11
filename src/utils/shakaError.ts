@@ -1,5 +1,5 @@
 // @ts-ignore
-import shaka from 'shaka-player/dist/shaka-player.compiled'; // Adjust import path if needed
+import shaka from 'shaka-player';
 
 interface FormattedError {
     title: string;
