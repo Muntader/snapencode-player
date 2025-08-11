@@ -1,10 +1,12 @@
+@import "tailwindcss";
 /*
  * 1. Root Player Container
  *    This class applies to the main div wrapping the player.
  *    It sets the global font for the UI, which is inherited by all controls.
  */
 .bitbyte3-player-container {
-    font-family: var(--theme-font, sans-serif); /* Use theme font with a safe fallback */
+    font-family: var(--theme-font, sans-serif);
+    overflow: hidden;
 }
 
 

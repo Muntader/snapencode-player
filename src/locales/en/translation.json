@@ -1,0 +1,18 @@
+{
+  "play": "Play",
+  "pause": "Pause",
+  "fullscreen": "Fullscreen",
+  "exitFullscreen": "Exit Fullscreen",
+  "mute": "Mute",
+  "unmute": "Unmute",
+  "language": "Language",
+  "quality": "Quality",
+  "audioAndSubtitles": "Audio & Subtitles",
+  "auto": "Auto",
+  "audio": "Audio",
+  "subtitles": "Subtitles",
+  "off": "Off",
+  "speed": "Speed",
+  "normal": "Normal",
+  "pip": "Picture-in-Picture"
+}

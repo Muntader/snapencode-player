@@ -7,6 +7,10 @@ import { usePlayerConfigStore } from "./store/usePlayerConfigStore";
 import ErrorBoundary from "@/core/ErrorBoundary";
 import {PlayerCore} from "@/PlayerCore";
 
+
+import { I18nextProvider } from 'react-i18next';
+import i18n from './i18n';
+
 interface PlayerProps {
     /** The single, unified configuration object for the player. */
     configuration: Configuration;
@@ -32,10 +36,18 @@ const Player: React.FC<PlayerProps> = ({ configuration }) => {
 
     }, [configuration, loadConfiguration]);
 
+    useEffect(() => {
+        if (configuration.behavior?.language) {
+            i18n.changeLanguage(configuration.behavior.language);
+        }
+    }, [configuration.behavior?.language]);
+
     return (
         <ErrorBoundary>
             <PlayerProvider>
-                <PlayerCore />
+                <I18nextProvider i18n={i18n}>
+                    <PlayerCore />
+                </I18nextProvider>
             </PlayerProvider>
         </ErrorBoundary>
     );

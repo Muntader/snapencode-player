@@ -71,7 +71,7 @@ const VolumeButton: React.FC = React.memo(() => {
                 id="volume-slider-panel"
                 className={`
                     absolute bottom-full mb-2 left-1/2 -translate-x-1/2
-                    bg-white/90 backdrop-blur-md rounded-xl shadow-xl shadow-black/15
+                    backdrop-blur-md bg-zinc-900/95 rounded-xl border border-zinc-700/50 shadow-2xl
                     py-4 px-3 h-[140px] flex justify-center items-center
                     transition-all duration-200 ease-in-out z-10
                     ${isPanelVisible ? 'opacity-100 translate-y-0 visible' : 'opacity-0 translate-y-4 invisible'}
@@ -90,10 +90,6 @@ const VolumeButton: React.FC = React.memo(() => {
                         previewValue={optimisticVolume}
                         onChange={handleVolumeChange}
                         onDragEnd={handleDragEnd}
-                        // --- Pass the new optional props ---
-                        progressBgColor={'bg-slate-500/90'}
-                        progressColor="slider-primary" // A nice blue for the volume level
-                        previewColor="bg-black/50" // A greyish preview looks good on a white background
                     />
                 </div>
             </div>

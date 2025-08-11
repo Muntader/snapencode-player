@@ -1,0 +1,25 @@
+/* src/components/settings/SettingsMenu.css */
+
+.settings-menu {
+  @apply h-full w-full overflow-hidden rounded-lg bg-white shadow-lg;
+}
+
+.settings-menu-header {
+  @apply flex h-14 shrink-0 items-center justify-center border-b border-slate-200 px-4 md:hidden;
+}
+
+.settings-menu-header h3 {
+  @apply text-lg font-semibold text-slate-800;
+}
+
+.settings-menu-body {
+  @apply flex h-[calc(100%-56px)] transition-transform duration-300 ease-in-out md:h-auto;
+}
+
+.settings-menu-body.panel-active {
+  @apply -translate-x-full;
+}
+
+.settings-menu-panel {
+  @apply w-full flex-shrink-0 overflow-y-auto p-2;
+}

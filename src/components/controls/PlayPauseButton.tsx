@@ -1,17 +1,19 @@
 import React from "react";
-import {usePlayerStateStore} from "@/store/usePlayerStateStore";
-import {usePlayerControls} from "@/hooks/usePlayerControls";
-import {Button} from "@/components/common/Button";
+import { useTranslation } from "react-i18next";
+import { usePlayerStateStore } from "@/store/usePlayerStateStore";
+import { usePlayerControls } from "@/hooks/usePlayerControls";
+import { Button } from "@/components/common/Button";
 import { Icons } from "../common/Icon";
 
 const PlayPauseButton = React.memo(() => {
-    // Get state from the state store.
+    const { t } = useTranslation();
     const isPlaying = usePlayerStateStore(state => state.isPlaying);
-    // Get actions from the controls hook.
     const { togglePlay } = usePlayerControls();
 
+    const label = isPlaying ? t('pause') : t('play');
+
     return (
-        <Button onClick={togglePlay} aria-label={"Play/Pause"}>
+        <Button onClick={togglePlay} aria-label={label} title={label}>
             {isPlaying ? <Icons.PauseIcon className="w-6 h-6 fill-current text-primary" /> : <Icons.PlayIcon className="w-6 h-6 fill-current text-primary" />}
         </Button>
     );

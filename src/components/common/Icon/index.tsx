@@ -163,6 +163,24 @@ const CloseIconSvg = (props: React.SVGProps<SVGSVGElement>) => (
 );
 
 
+const PipIconSvg: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" {...props}>
+        <path d="M19 7h-8v6h8V7zm2-4H3c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H3V5h18v14z"/>
+    </svg>
+);
+
+const SpeedIconSvg: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" {...props}>
+        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v5h-2zm-3.56 5.44l1.41-1.41 3.54 3.54-1.41 1.41z"/>
+    </svg>
+);
+
+const LanguageIconSvg: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" {...props}>
+        <path d="M12.87 15.07l-2.54-2.51.03-.03c1.74-1.94 2.98-4.17 3.71-6.53H17V4h-7V2H8v2H1v1.99h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12zm-2.62 7l1.62-4.33L19.12 17h-3.24z"/>
+    </svg>
+);
+
 //================================================================================
 // Icon Export Object (UPDATED)
 //================================================================================
@@ -190,4 +208,7 @@ export const Icons = {
     ChevronLeftIcon: createIcon(ChevronLeftIconSvg),
     ChevronRightIcon: createIcon(ChevronRightIconSvg),
     SettingsIcon: createIcon(SettingsIconSvg),
+    LanguageIcon: createIcon(LanguageIconSvg),
+    SpeedIcon: createIcon(SpeedIconSvg),
+    PipIcon: createIcon(PipIconSvg),
 };

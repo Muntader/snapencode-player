@@ -1,7 +1,6 @@
 // src/player/types/index.ts
 
-// @ts-ignore
-import shaka from "shaka-player/dist/shaka-player.compiled";
+import shaka from 'shaka-player';
 
 // ============================================================================
 // 1. CORE CONFIGURATION (The Single Source of Truth)
@@ -27,6 +26,8 @@ export interface Configuration {
         defaultAudioLanguage?: string;
         /** The ISO 639-1 language code for the default text track (subtitles). */
         defaultTextLanguage?: string;
+        /** The language for the player UI. Defaults to 'en'. */
+        language?: string;
     };
 
     /**
