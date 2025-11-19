@@ -1,61 +1,80 @@
 # React SnapEncode Player
 
-A modern, flexible, and feature-rich React video player built with TypeScript, Shaka Player, and TailwindCSS. It's designed to be easily customizable and extensible, providing a great out-of-the-box experience for playing a wide range of video content.
+A React video player library built on Shaka Player with support for adaptive streaming (DASH/HLS), DRM, and playlists. Styled with TailwindCSS and fully typed with TypeScript.
 
-## Features
+## Why This Player?
 
-*   **Adaptive Streaming:** Powered by Shaka Player for MPEG-DASH and HLS playback.
-*   **Customizable UI:** Use TailwindCSS to style the player to match your application's look and feel.
-*   **TypeScript Support:** Fully typed for a better developer experience.
-*   **Playlist Support:** Easily create and manage playlists.
-*   **DRM Support:** Ready for protected content with Widevine, PlayReady, and FairPlay.
-*   **Modern React:** Built with React hooks and functional components.
+- **Adaptive Streaming** - Supports MPEG-DASH and HLS with automatic quality switching
+- **DRM Ready** - Works with Widevine, PlayReady, and FairPlay for protected content
+- **Playlist Support** - Built-in playlist management with seasons and episodes
+- **Customizable** - Easy theming and UI customization with TailwindCSS
+- **TypeScript** - Full type definitions included
+- **Lightweight** - Tree-shakeable and optimized bundle size
 
 ## Installation
-
-You can install the player using npm or yarn:
 
 ```bash
 npm install react-snapencode-player
 ```
 
+or
+
 ```bash
 yarn add react-snapencode-player
 ```
 
-## Peer Dependencies
+**Note:** React 18+ or 19+ is required as a peer dependency.
 
-This library has `react` and `react-dom` as peer dependencies. You should have them already in your project.
-
-```json
-"peerDependencies": {
-  "react": "^18.0.0 || ^19.0.0",
-  "react-dom": "^18.0.0 || ^19.0.0"
-}
-```
-
-## Usage
-
-Here's a simple example of how to use the player in your React application:
+## Quick Start
 
 ```jsx
-import React from 'react';
-import Player, { Configuration } from 'react-snapencode-player';
-
-// 1. Import the CSS file
+import Player from 'react-snapencode-player';
 import 'react-snapencode-player/dist/react-snapencode-player.esm.min.css';
 
-const App = () => {
-  const config: Configuration = {
+function App() {
+  const config = {
     source: {
       playlist: [
         {
-          id: 'season-1',
-          title: 'My Awesome Video',
+          id: 'video-1',
+          title: 'My Video',
+          items: [
+            {
+              videoURL: 'https://example.com/video.mpd',
+              title: 'Episode 1',
+            },
+          ],
+        },
+      ],
+    },
+  };
+
+  return <Player config={config} />;
+}
+```
+
+**Important:** You must import the CSS file for the player to display correctly.
+
+## Usage Examples
+
+### Basic Single Video
+
+```jsx
+import Player from 'react-snapencode-player';
+import 'react-snapencode-player/dist/react-snapencode-player.esm.min.css';
+
+function VideoPlayer() {
+  const config = {
+    source: {
+      playlist: [
+        {
+          id: 'single-video',
+          title: 'Tutorial',
           items: [
             {
               videoURL: 'https://storage.googleapis.com/shaka-demo-assets/angel-one/dash.mpd',
-              title: 'Angel One',
+              title: 'Getting Started',
+              posterURL: 'https://example.com/poster.jpg',
             },
           ],
         },
@@ -64,63 +83,199 @@ const App = () => {
   };
 
   return (
-    <div style={{ width: '800px', margin: '0 auto' }}>
+    <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '20px' }}>
       <Player config={config} />
     </div>
   );
-};
-
-export default App;
+}
 ```
 
-### Important: Import the CSS
-
-For the player to be styled correctly, you **must** import the CSS file from the package.
-
-```javascript
-import 'react-snapencode-player/dist/react-snapencode-player.esm.min.css';
-```
-
-## Configuration
-
-The player is configured through the `config` prop, which takes an object of type `Configuration`. For a full list of available options, please refer to the type definitions in `src/types/index.ts`.
-
-Here's a more advanced configuration example:
+### Playlist with Multiple Episodes
 
 ```jsx
-const config: Configuration = {
+const config = {
   source: {
     playlist: [
       {
         id: 'season-1',
-        title: 'My Awesome Video',
+        title: 'Season 1',
         items: [
           {
-            videoURL: 'https://storage.googleapis.com/shaka-demo-assets/angel-one/dash.mpd',
-            title: 'Angel One',
-            posterURL: 'https://your-poster-image.com/poster.jpg',
-            duration: 120, // in seconds
+            videoURL: 'https://example.com/s1e1.mpd',
+            title: 'Episode 1: Pilot',
+            posterURL: 'https://example.com/s1e1-poster.jpg',
+            duration: 2400, // 40 minutes in seconds
+          },
+          {
+            videoURL: 'https://example.com/s1e2.mpd',
+            title: 'Episode 2: The Beginning',
+            posterURL: 'https://example.com/s1e2-poster.jpg',
+            duration: 2700,
+          },
+        ],
+      },
+      {
+        id: 'season-2',
+        title: 'Season 2',
+        items: [
+          {
+            videoURL: 'https://example.com/s2e1.mpd',
+            title: 'Episode 1: Return',
+            posterURL: 'https://example.com/s2e1-poster.jpg',
+            duration: 2550,
           },
         ],
       },
     ],
   },
-  behavior: {
-    startMuted: true,
-    lowLatency: false,
+};
+```
+
+### Custom Theme and Branding
+
+```jsx
+const config = {
+  source: {
+    playlist: [
+      // ... your playlist
+    ],
   },
   ui: {
     theme: {
-      primaryColor: '#ff0000',
+      primaryColor: '#3b82f6', // Blue accent color
     },
     layout: {
-      logoUrl: 'https://your-logo.com/logo.png',
-      logoPosition: 'top-right',
+      logoUrl: 'https://example.com/logo.png',
+      logoPosition: 'top-right', // or 'top-left'
     },
   },
 };
 ```
 
-## Contributing
+### Autoplay and Muted Start
 
-Contributions are welcome! Please open an issue or submit a pull request.
+```jsx
+const config = {
+  source: {
+    playlist: [
+      // ... your playlist
+    ],
+  },
+  behavior: {
+    startMuted: true,  // Start with audio muted
+    lowLatency: false, // Enable for live streams
+  },
+};
+```
+
+### HLS Streaming
+
+```jsx
+const config = {
+  source: {
+    playlist: [
+      {
+        id: 'hls-video',
+        title: 'Live Stream',
+        items: [
+          {
+            videoURL: 'https://example.com/stream.m3u8',
+            title: 'Live Event',
+          },
+        ],
+      },
+    ],
+  },
+};
+```
+
+### DRM Protected Content
+
+```jsx
+const config = {
+  source: {
+    playlist: [
+      {
+        id: 'protected-video',
+        title: 'Premium Content',
+        items: [
+          {
+            videoURL: 'https://example.com/protected.mpd',
+            title: 'DRM Protected Video',
+            drm: {
+              servers: {
+                'com.widevine.alpha': 'https://example.com/widevine-license',
+                'com.microsoft.playready': 'https://example.com/playready-license',
+              },
+            },
+          },
+        ],
+      },
+    ],
+  },
+};
+```
+
+## Configuration Options
+
+### Source Configuration
+
+| Property | Type | Description |
+|----------|------|-------------|
+| `playlist` | `Array` | Array of playlist items (seasons/collections) |
+| `playlist[].id` | `string` | Unique identifier for the playlist |
+| `playlist[].title` | `string` | Display name for the playlist |
+| `playlist[].items` | `Array` | Array of video items |
+| `playlist[].items[].videoURL` | `string` | URL to the video manifest (DASH/HLS) |
+| `playlist[].items[].title` | `string` | Video title |
+| `playlist[].items[].posterURL` | `string` | Optional poster image URL |
+| `playlist[].items[].duration` | `number` | Optional duration in seconds |
+
+### UI Configuration
+
+| Property | Type | Description |
+|----------|------|-------------|
+| `ui.theme.primaryColor` | `string` | Hex color for UI accents |
+| `ui.layout.logoUrl` | `string` | URL to your logo image |
+| `ui.layout.logoPosition` | `'top-left' \| 'top-right'` | Logo position |
+
+### Behavior Configuration
+
+| Property | Type | Description |
+|----------|------|-------------|
+| `behavior.startMuted` | `boolean` | Start playback muted |
+| `behavior.lowLatency` | `boolean` | Enable low-latency mode for live streams |
+
+## Development
+
+```bash
+# Install dependencies
+npm install
+
+# Start development server
+npm start
+
+# Build for production
+npm run build
+
+# Build ESM module
+npm run build:esm
+
+# Generate TypeScript definitions
+npm run build:types
+```
+
+## Browser Support
+
+- Chrome 80+
+- Firefox 75+
+- Safari 13+
+- Edge 80+
+
+## License
+
+Check the package for license information.
+
+## Support
+
+For issues and questions, please open an issue on the project repository.
