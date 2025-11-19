@@ -1,6 +1,7 @@
 # React SnapEncode Player
 
 A React video player library built on Shaka Player with support for adaptive streaming (DASH/HLS), DRM, and playlists. Styled with TailwindCSS and fully typed with TypeScript.
+I use it on https://snapencode.com
 
 ## Why This Player?
 
