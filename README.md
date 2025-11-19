@@ -11,25 +11,12 @@ A React video player library built on Shaka Player with support for adaptive str
 - **TypeScript** - Full type definitions included
 - **Lightweight** - Tree-shakeable and optimized bundle size
 
-## Installation
-
-```bash
-npm install react-snapencode-player
-```
-
-or
-
-```bash
-yarn add react-snapencode-player
-```
-
 **Note:** React 18+ or 19+ is required as a peer dependency.
 
 ## Quick Start
 
 ```jsx
-import Player from 'react-snapencode-player';
-import 'react-snapencode-player/dist/react-snapencode-player.esm.min.css';
+import 'dist/react-snapencode-player.esm.min.css';
 
 function App() {
   const config = {
@@ -60,8 +47,7 @@ function App() {
 ### Basic Single Video
 
 ```jsx
-import Player from 'react-snapencode-player';
-import 'react-snapencode-player/dist/react-snapencode-player.esm.min.css';
+import 'dist/react-snapencode-player.esm.min.css';
 
 function VideoPlayer() {
   const config = {
