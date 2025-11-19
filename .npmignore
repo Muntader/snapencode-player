@@ -1,0 +1,52 @@
+# Source files
+src/
+examples/
+docs/
+
+# Configuration files
+webpack.dev.config.js
+webpack.esm.config.js
+tsconfig.json
+tsconfig.types.json
+tailwind.config.js
+postcss.config.js
+.babelrc
+
+# Development files
+node_modules/
+.git/
+.github/
+*.log
+*.lock
+
+# Test files
+test/
+tests/
+__tests__/
+*.test.js
+*.test.ts
+*.test.tsx
+*.spec.js
+*.spec.ts
+*.spec.tsx
+test-build.js
+
+# Build artifacts (keep only dist/)
+*.tsbuildinfo
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Misc
+coverage/
+.nyc_output/
